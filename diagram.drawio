@@ -192,8 +192,22 @@
                         <mxRectangle width="184" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="52" value="Relationship" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-                    <mxGeometry x="-59" y="190" width="120" height="60" as="geometry"/>
+                <mxCell id="52" value="Relationship" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;rotation=-90;" vertex="1" parent="1">
+                    <mxGeometry x="-48" y="200" width="98" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERmany;startArrow=ERmany;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.498;entryY=1.042;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="2" target="46">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="130" y="290" as="sourcePoint"/>
+                        <mxPoint x="230" y="190" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="54" value="Dipartimenti_CorsiLaurea" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="160" width="210" height="120" as="geometry">
+                        <mxRectangle x="50" y="160" width="200" height="50" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="55" value="Dipartimenti_ID&lt;br&gt;Corsi_di_Laurea_ID&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="54">
+                    <mxGeometry y="50" width="210" height="70" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

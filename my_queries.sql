@@ -49,10 +49,19 @@ FROM `departments`
 */
 
 # Quanti sono gli insegnanti che non hanno un numero di telefono? (50)
+/*
 SELECT COUNT(*) as `teachers_without_phone_number`
 FROM `teachers`
 WHERE `phone` IS NULL
+*/
 
+
+#GROUP BY
+
+# Contare quanti iscritti ci sono stati ogni anno
+SELECT COUNT(*) as `how_many_iscritti`, YEAR(`enrolment_date`)
+FROM `students`
+GROUP BY YEAR(`enrolment_date`)
 
 
 

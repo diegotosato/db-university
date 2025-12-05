@@ -165,6 +165,15 @@ JOIN degrees ON courses.degree_id = degrees.id
 WHERE degrees.name = "Corso di Laurea in Lettere"
 */
 
+# Selezionare il libretto universitario di Mirco Messina (matricola n. 620320)
+# cosa serve: students (name, surname, enrolment_date, registration_number), courses , exams, exam_student 
+SELECT students.name AS studentName, students.surname AS studentSurname, students.enrolment_date, students.registration_number, courses.name AS coursesName, exam_student.vote
+FROM students
+JOIN exam_student ON exam_student.student_id = students.id
+JOIN exams ON exam_student.exam_id = exams.id
+JOIN courses ON exams.course_id = courses.id
+WHERE students.name = "Mirco" AND students.surname = "Messina" AND exam_student.vote >= 18
+
 
 
 

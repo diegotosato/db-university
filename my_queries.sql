@@ -17,14 +17,14 @@ ORDER BY `cfu`
 /*
 SELECT *
 FROM `students`
-WHERE YEAR(`date_of_birth`) > 1995
+WHERE YEAR(`date_of_birth`) < 1995
 ORDER BY YEAR(`date_of_birth`)
 */
-
+/*
 SELECT *
 FROM `students`
 WHERE YEAR(`date_of_birth`) < YEAR(CURDATE()) - 30
-
+*/
 
 # Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di laurea (286)
 /*

@@ -167,13 +167,25 @@ WHERE degrees.name = "Corso di Laurea in Lettere"
 
 # Selezionare il libretto universitario di Mirco Messina (matricola n. 620320)
 # cosa serve: students (name, surname, enrolment_date, registration_number), courses , exams, exam_student 
+/*
 SELECT students.name AS studentName, students.surname AS studentSurname, students.enrolment_date, students.registration_number, courses.name AS coursesName, exam_student.vote
 FROM students
 JOIN exam_student ON exam_student.student_id = students.id
 JOIN exams ON exam_student.exam_id = exams.id
 JOIN courses ON exams.course_id = courses.id
 WHERE students.name = "Mirco" AND students.surname = "Messina" AND exam_student.vote >= 18
+*/
 
+# Selezionare il voto medio di superamento d'esame per ogni corso, con anche i dati del corso di laurea associato, ordinati per media voto decrescente
+# exam_student, exams, courses, degrees
+SELECT ROUND(AVG(exam_student.vote), 1) AS media_voto, courses.name AS courseName, degrees.name AS laurea
+FROM exam_student
+JOIN exams ON exam_student.exam_id = exams.id
+JOIN courses ON exams.course_id = courses.id
+JOIN degrees ON courses.degree_id = degrees.id
+WHERE exam_student.vote >= 18
+GROUP BY courses.id
+ORDER BY media_voto DESC
 
 
 

@@ -215,11 +215,22 @@ WHERE degrees.level = "magistrale" AND departments.name = "Dipartimento di Neuro
 
 # Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)
 # cosa serve: teachers, courses, course_teacher
+/*
 SELECT teachers.name AS teacherName, teachers.surname AS teacherSurname, courses.id, courses.name
 FROM courses
 JOIN course_teacher ON course_teacher.course_id = courses.id
 JOIN teachers ON course_teacher.teacher_id = teachers.id
 WHERE teachers.name = "Fulvio" AND teachers.surname = "Amato"
+*/
+
+
+#Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome
+# cosa serve: students, degrees, departments
+SELECT students.id, students.name, students.surname, degrees.name AS degree, departments.name AS department
+FROM students
+JOIN degrees ON students.degree_id = degrees.id
+JOIN departments ON degrees.department_id = departments.id
+ORDER BY students.name
 
 
 

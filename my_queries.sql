@@ -178,6 +178,7 @@ WHERE students.name = "Mirco" AND students.surname = "Messina" AND exam_student.
 
 # Selezionare il voto medio di superamento d'esame per ogni corso, con anche i dati del corso di laurea associato, ordinati per media voto decrescente
 # exam_student, exams, courses, degrees
+/*
 SELECT ROUND(AVG(exam_student.vote), 1) AS media_voto, courses.name AS courseName, degrees.name AS laurea
 FROM exam_student
 JOIN exams ON exam_student.exam_id = exams.id
@@ -186,6 +187,18 @@ JOIN degrees ON courses.degree_id = degrees.id
 WHERE exam_student.vote >= 18
 GROUP BY courses.id
 ORDER BY media_voto DESC
+*/
+
+
+#Utilizzando lo stesso database di ieri, eseguite le query in allegato.
+# Caricate un secondo file nella stessa repo di ieri (db-university) con le query di oggi.
+
+# Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia
+# cosa serve: students, degrees
+SELECT *
+FROM students
+JOIN degrees ON students.degree_id = degrees.id
+WHERE degrees.name = "Corso di Laurea in Economia"
 
 
 

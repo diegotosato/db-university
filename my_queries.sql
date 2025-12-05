@@ -146,11 +146,25 @@ WHERE `degrees`.`name` = "Corso di Laurea in Diritto dell'Economia"
 
 # Selezionare tutti gli appelli d'esame del Corso di Laurea Magistrale in Fisica del primo anno
 # tabelle necessarie: exams (tutti gli appelli d'esame), degrees (Corso di Laurea Magistrale in Fisica), courses (del primo anno)
-SELECT degrees.id AS degreesId, degrees.name AS Laurea, courses.id AS coursesId, courses.name AS Corso, courses.description, courses.period, courses.year, exams.id AS examsId, exams.date, exams.hour, exams.location, exams.address
+/*
+SELECT degrees.name AS Laurea, courses.name AS Corso, courses.period, courses.year, exams.date, exams.hour, exams.location, exams.address
 FROM degrees
 JOIN courses ON courses.degree_id = degrees.id
 JOIN exams ON exams.course_id = courses.id
 WHERE degrees.name = "Corso di Laurea Magistrale in Fisica" AND courses.year = 1
+*/
+
+#Selezionare tutti i docenti che insegnano nel Corso di Laurea in Lettere (21)
+#cosa serve: teachers, degrees, course_teachers, courses
+/*
+SELECT DISTINCT teachers.name, teachers.surname, teachers.office_address
+FROM teachers
+JOIN course_teacher ON course_teacher.teacher_id = teachers.id
+JOIN courses ON course_teacher.course_id = courses.id
+JOIN degrees ON courses.degree_id = degrees.id
+WHERE degrees.name = "Corso di Laurea in Lettere"
+*/
+
 
 
 

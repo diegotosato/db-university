@@ -21,6 +21,11 @@ WHERE YEAR(`date_of_birth`) > 1995
 ORDER BY YEAR(`date_of_birth`)
 */
 
+SELECT *
+FROM `students`
+WHERE YEAR(`date_of_birth`) < YEAR(CURDATE()) - 30
+
+
 # Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di laurea (286)
 /*
 SELECT *
@@ -80,6 +85,8 @@ GROUP BY `exam_id`
 */
 
 # Contare quanti corsi di laurea ci sono per ogni dipartimento
+/*
 SELECT COUNT(*) as `degrees`, `department_id`
 FROM `degrees`
 GROUP BY `department_id`
+*/

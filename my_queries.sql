@@ -195,10 +195,21 @@ ORDER BY media_voto DESC
 
 # Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia
 # cosa serve: students, degrees
+/*
 SELECT *
 FROM students
 JOIN degrees ON students.degree_id = degrees.id
 WHERE degrees.name = "Corso di Laurea in Economia"
+*/
+
+
+
+# Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze
+# cosa serve: degrees, departments
+SELECT *
+FROM degrees
+JOIN departments ON degrees.department_id = departments.id
+WHERE degrees.level = "magistrale" AND departments.name = "Dipartimento di Neuroscienze"
 
 
 

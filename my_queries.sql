@@ -90,3 +90,44 @@ SELECT COUNT(*) as `degrees`, `department_id`
 FROM `degrees`
 GROUP BY `department_id`
 */
+
+
+# ESERCIZI CON JOIN FATTI IN CLASSE
+# Selezionare tutti i corsi del Corso di Laurea in Informatica (22)
+
+#forma estesa
+/*
+SELECT *
+FROM `courses`
+JOIN `degrees` ON `courses`.`degree_id` = `degrees`.`id`
+WHERE `degrees`.`name` = "Corso di Laurea in Informatica"
+*/
+
+#forma filtrata
+/*
+SELECT `courses`.`id` AS `coursesId`, `courses`.`cfu`, `courses`.`name`, `courses`.`description`, `courses`.`period`, `courses`.`website`, `degrees`.`name`
+FROM `courses`
+JOIN `degrees` ON `courses`.`degree_id` = `degrees`.`id`
+WHERE `degrees`.`name` = "Corso di Laurea in Informatica"
+*/
+
+
+#  Selezionare le informazioni sul corso con id = 144, con tutti i relativi appelli d’esame
+
+# estesa
+/*
+SELECT *
+FROM `courses`
+JOIN `exams` ON `exams`.`course_id` = `courses`.`id`
+WHERE `courses`.`id` = 144
+*/
+
+#filtrata
+/*
+SELECT `courses`.`id` AS `coursesID`, `courses`.`name`, `courses`.`cfu`, `exams`.`id` AS `examsId`, `exams`.`date`, `exams`.`hour`, `exams`.`location`, `exams`.`address`
+FROM `courses`
+JOIN `exams` ON `exams`.`course_id` = `courses`.`id`
+WHERE `courses`.`id` = 144
+*/
+
+

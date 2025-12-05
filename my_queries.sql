@@ -226,11 +226,43 @@ WHERE teachers.name = "Fulvio" AND teachers.surname = "Amato"
 
 #Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome
 # cosa serve: students, degrees, departments
-SELECT students.id, students.name, students.surname, degrees.name AS degree, departments.name AS department
+/*
+SELECT students.id, students.surname, students.name, degrees.name AS degree, departments.name AS department
 FROM students
 JOIN degrees ON students.degree_id = degrees.id
 JOIN departments ON degrees.department_id = departments.id
-ORDER BY students.name
+ORDER BY students.surname, students.name
+*/
+
+
+
+
+# Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
+# cosa serve: degrees, courses => course_teacher => teachers
+
+SELECT degrees.name AS degree, courses.name AS course, teachers.name AS teacherName, teachers.surname AS teacherSurname
+FROM degrees
+JOIN courses ON degrees.id = courses.degree_id
+JOIN course_teacher ON courses.id = course_teacher.course_id
+JOIN teachers ON course_teacher.teacher_id = teachers.id
+ORDER BY degrees.name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,91 @@
+#Utilizzando lo stesso database di ieri, eseguite le query in allegato.
+# Caricate un secondo file nella stessa repo di ieri (db-university) con le query di oggi.
+
+
+
+# Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia
+# cosa serve: students, degrees
+
+SELECT *
+FROM students
+JOIN degrees ON students.degree_id = degrees.id
+WHERE degrees.name = "Corso di Laurea in Economia";
+
+
+
+
+# Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze
+# cosa serve: degrees, departments
+
+SELECT *
+FROM degrees
+JOIN departments ON degrees.department_id = departments.id
+WHERE degrees.level = "magistrale" AND departments.name = "Dipartimento di Neuroscienze";
+
+
+
+
+# Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)
+# cosa serve: teachers, courses, course_teacher
+
+SELECT teachers.name AS teacherName, teachers.surname AS teacherSurname, courses.id, courses.name
+FROM courses
+JOIN course_teacher ON course_teacher.course_id = courses.id
+JOIN teachers ON course_teacher.teacher_id = teachers.id
+WHERE teachers.name = "Fulvio" AND teachers.surname = "Amato";
+
+
+
+
+# Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome
+# cosa serve: students, degrees, departments
+
+SELECT students.id, students.surname, students.name, degrees.name AS degree, departments.name AS department
+FROM students
+JOIN degrees ON students.degree_id = degrees.id
+JOIN departments ON degrees.department_id = departments.id
+ORDER BY students.surname, students.name;
+
+
+
+
+
+# Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
+# cosa serve: degrees, courses => course_teacher => teachers
+
+SELECT degrees.name AS degree, courses.name AS course, teachers.name AS teacherName, teachers.surname AS teacherSurname
+FROM degrees
+JOIN courses ON degrees.id = courses.degree_id
+JOIN course_teacher ON courses.id = course_teacher.course_id
+JOIN teachers ON course_teacher.teacher_id = teachers.id
+ORDER BY degrees.name;
+
+
+
+
+
+# Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (54)
+# cosa serve: teachers => course_teacher => courses, degrees, departments
+
+SELECT DISTINCT teachers.id, teachers.name, teachers.surname, departments.name
+FROM teachers
+JOIN course_teacher ON teachers.id = course_teacher.teacher_id
+JOIN courses ON course_teacher.course_id = courses.id
+JOIN degrees ON courses.degree_id = degrees.id
+JOIN departments ON degrees.department_id = departments.id
+WHERE departments.name = "Dipartimento di Matematica"
+ORDER BY teachers.id;
+
+
+
+# BONUS: Selezionare per ogni studente il numero di tentativi sostenuti per ogni esame, stampando anche il voto massimo. Successivamente, filtrare i tentativi con voto minimo 18.
+# students => exam_student => exams, courses
+
+SELECT students.id, students.name, students.surname, courses.id, courses.name AS course, COUNT(exam_student.vote), MAX(exam_student.vote) AS max_vote
+FROM students
+JOIN exam_student ON students.id = exam_student.student_id
+JOIN exams ON exam_student.exam_id = exams.id
+JOIN courses ON exams.course_id = courses.id
+GROUP BY students.id, courses.id
+HAVING max_vote >= 18
+ORDER BY students.name, students.surname;

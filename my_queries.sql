@@ -281,7 +281,7 @@ JOIN exams ON exam_student.exam_id = exams.id
 JOIN courses ON exams.course_id = courses.id
 GROUP BY students.id, courses.id
 HAVING max_vote >= 18
-ORDER BY students.name, students.surname
+ORDER BY students.name, students.surname;
 
 
 

@@ -206,10 +206,20 @@ WHERE degrees.name = "Corso di Laurea in Economia"
 
 # Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze
 # cosa serve: degrees, departments
+/*
 SELECT *
 FROM degrees
 JOIN departments ON degrees.department_id = departments.id
 WHERE degrees.level = "magistrale" AND departments.name = "Dipartimento di Neuroscienze"
+*/
+
+# Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)
+# cosa serve: teachers, courses, course_teacher
+SELECT teachers.name AS teacherName, teachers.surname AS teacherSurname, courses.id, courses.name
+FROM courses
+JOIN course_teacher ON course_teacher.course_id = courses.id
+JOIN teachers ON course_teacher.teacher_id = teachers.id
+WHERE teachers.name = "Fulvio" AND teachers.surname = "Amato"
 
 
 

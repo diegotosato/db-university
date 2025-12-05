@@ -137,10 +137,21 @@ FROM `departments`
 JOIN `degrees` ON `degrees`.`department_id` = `departments`.`id`
 WHERE `degrees`.`name` = "Corso di Laurea in Diritto dell'Economia"
 */
-
+/*
 SELECT `departments`.`id`, `departments`.`name` AS `departmentsName`, `departments`.`address` AS `departmentsAddress`, `departments`.`head_of_department`, `degrees`.`id`, `degrees`.`name` AS `degreesName`
 FROM `departments`
 JOIN `degrees` ON `degrees`.`department_id` = `departments`.`id`
 WHERE `degrees`.`name` = "Corso di Laurea in Diritto dell'Economia"
+*/
+
+# Selezionare tutti gli appelli d'esame del Corso di Laurea Magistrale in Fisica del primo anno
+# tabelle necessarie: exams (tutti gli appelli d'esame), degrees (Corso di Laurea Magistrale in Fisica), courses (del primo anno)
+SELECT degrees.id AS degreesId, degrees.name AS Laurea, courses.id AS coursesId, courses.name AS Corso, courses.description, courses.period, courses.year, exams.id AS examsId, exams.date, exams.hour, exams.location, exams.address
+FROM degrees
+JOIN courses ON courses.degree_id = degrees.id
+JOIN exams ON exams.course_id = courses.id
+WHERE degrees.name = "Corso di Laurea Magistrale in Fisica" AND courses.year = 1
+
+
 
 

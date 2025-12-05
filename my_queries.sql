@@ -253,6 +253,7 @@ ORDER BY degrees.name;
 
 #Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (54)
 #cosa serve: teachers => course_teacher => courses, degrees, departments
+/*
 SELECT DISTINCT teachers.id, teachers.name, teachers.surname, departments.name
 FROM teachers
 JOIN course_teacher ON teachers.id = course_teacher.teacher_id
@@ -261,16 +262,25 @@ JOIN degrees ON courses.degree_id = degrees.id
 JOIN departments ON degrees.department_id = departments.id
 WHERE departments.name = "Dipartimento di Matematica"
 ORDER BY teachers.id
+*/
 
 
+#BONUS: Selezionare per ogni studente il numero di tentativi sostenuti per ogni esame, stampando anche il voto massimo. Successivamente, filtrare i tentativi con voto minimo 18.
+# students => exam_student => exams, courses
 
+/*
+SELECT student_id, exam_id, COUNT(*) AS conteggio
+FROM exam_student
+GROUP BY student_id, exam_id
+HAVING COUNT(*) > 1*/
 
-
-
-
-
-
-
+SELECT students.name, students.surname, exams.date, exams.hour, courses.name AS course, exam_student.vote
+FROM students
+JOIN exam_student ON students.id = exam_student.student_id
+JOIN exams ON exam_student.exam_id = exams.id
+JOIN courses ON exams.course_id = courses.id
+WHERE exam_student.vote >= 18
+ORDER BY students.name, students.surname
 
 
 

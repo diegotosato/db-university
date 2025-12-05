@@ -130,4 +130,17 @@ JOIN `exams` ON `exams`.`course_id` = `courses`.`id`
 WHERE `courses`.`id` = 144
 */
 
+# Selezionare a quale dipartimento appartiene il Corso di Laurea in Diritto dell'Economia (Dipartimento di Scienze politiche, giuridiche e studi internazionali)
+/*
+SELECT *
+FROM `departments`
+JOIN `degrees` ON `degrees`.`department_id` = `departments`.`id`
+WHERE `degrees`.`name` = "Corso di Laurea in Diritto dell'Economia"
+*/
+
+SELECT `departments`.`id`, `departments`.`name` AS `departmentsName`, `departments`.`address` AS `departmentsAddress`, `departments`.`head_of_department`, `degrees`.`id`, `degrees`.`name` AS `degreesName`
+FROM `departments`
+JOIN `degrees` ON `degrees`.`department_id` = `departments`.`id`
+WHERE `degrees`.`name` = "Corso di Laurea in Diritto dell'Economia"
+
 
